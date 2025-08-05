@@ -20,7 +20,7 @@ export class TransactionsService {
     private readonly transactionsRepo: TransactionsRepository,
     private readonly validateBankAccountOwnershipService: ValidateBankAccountOwnershipService,
     private readonly validateCategoryOwnershipService: ValidateCategoryOwnershipService,
-    private readonly validateTransactionOwnsershipService: ValidateTransactionOwnershipService,
+    private readonly validateTransactionOwnershipService: ValidateTransactionOwnershipService,
   ) {}
 
   async create(userId: string, createTransactionDto: CreateTransactionDto) {
@@ -106,9 +106,9 @@ export class TransactionsService {
     categoryId,
     transactionId,
   }: ValidateEntitiesOwnershipInterface) {
-    await await Promise.all([
+    await Promise.all([
       transactionId &&
-        this.validateTransactionOwnsershipService.validate(
+        this.validateTransactionOwnershipService.validate(
           userId,
           transactionId,
         ),
